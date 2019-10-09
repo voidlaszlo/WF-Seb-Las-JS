@@ -26,14 +26,14 @@ function registerEventListeners() {
             if(number == "") {
                 operator = e.target.innerText
                 string += `${number} ${operator} `
-                output.innerHTML += `<small>${string}</small>`
+                prevOps.innerText = string
                 console.log("hey its nohing")
             } else {
                 
                 operator = e.target.innerText
                 numbers.push(number)
                 string += `${number} ${operator} `
-                output.innerHTML += `<small>${string}</small>`
+                prevOps.innerText = string
                 number = ""
 
             }
@@ -45,6 +45,7 @@ function registerEventListeners() {
         button.addEventListener('click', (e) => {
                         
             if(result !== 0 && number == "" && operator == "") {
+                string = ""
                 numbers = []
                 result = 0
                 number += e.target.innerText
@@ -56,6 +57,7 @@ function registerEventListeners() {
                 number += e.target.innerText
                 output.innerHTML = `<p>${number}</p><small>${string}</small>`
             }
+
         })
     }
 
@@ -63,7 +65,7 @@ function registerEventListeners() {
     equals.addEventListener('click', (e) => {
         result = 0
         numbers.push(number)
-        console.log(number)
+        console.log("Pushed")
 
         switch(operator) {
             case "+":
@@ -72,6 +74,7 @@ function registerEventListeners() {
                     console.log(result)
                 }
                 output.innerText = result
+                string += `${number} = ${result}`
                 operator = ""
                 number = ""
                 break
@@ -85,13 +88,15 @@ function registerEventListeners() {
                     }
                 }
                 output.innerText = result
+                string += `${number} = ${result}`
                 operator = ""
                 number = ""
                 break
         }
 
         numbers = [result]
-        output.innerHTML = `<p>${result.toString()}</p>`
+        
+        output.innerHTML = `<p>${result.toString()}</p><small>${string}</small>`
         console.log("The numbers array is " + numbers + " The result is : " + result)
     })
 
