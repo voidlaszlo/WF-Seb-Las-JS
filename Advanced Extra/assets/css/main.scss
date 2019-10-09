@@ -6,8 +6,9 @@
 $breakpoint-mobile : 500px;
 
 div.container {
-    width: 50%;
-    margin: 0 auto;
+    width: 80%;
+    max-width: 700px;
+    margin: 30vh auto;
     background-color: #eee;
     
     // GRID

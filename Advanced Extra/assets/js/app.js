@@ -15,8 +15,16 @@ let operator
 let result = 0
 let string = ""
 
+// INIT
+init()
+
 // FUNCTIONS
-clear()
+function init() {
+    clear()
+    registerEventListeners()
+}
+
+// ADDING EVENT LISTENERS
 function registerEventListeners() {
 
     // EVENT LISTENER ON THE OPERATOR BUTONS
@@ -94,6 +102,7 @@ function registerEventListeners() {
                 break
         }
 
+        // SET THE NUMBERS ARRAY TO THE RESULT ONLY
         numbers = [result]
         
         output.innerHTML = `<p>${result.toString()}</p><small>${string}</small>`
@@ -113,6 +122,7 @@ function registerEventListeners() {
 
 }
 
+// CLEAR EVERYTHING FUNCTION
 function clear() {
     string = ""
     numbers = []
@@ -121,10 +131,9 @@ function clear() {
     output.innerHTML = `<p>${result}</p><small></small>`
 }
 
+// DELETE LAST CHARACTER FUNCTION
 function deleteLastCharacter(str) {
     let newStr = str.substring(0, str.length -1)
     str = newStr
     return str
 }
-
-registerEventListeners()
