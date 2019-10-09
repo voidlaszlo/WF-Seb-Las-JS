@@ -3,15 +3,20 @@ let numberBtns = document.querySelectorAll('.number')
 let operatorBtns = document.querySelectorAll('.operator')
 let equals = document.getElementById('equals')
 let output = document.getElementById('output')
+let resOut = document.getElementById('resultOutput')
+let prevOps = document.getElementById('prevOperations')
 let cBtn = document.getElementById('cBtn')
+let deleteBtn = document.getElementById('deleteBtn')
 
 // VARIABLES
 let numbers = []
 let number = ""
 let operator
 let result = 0
+let string = ""
 
 // FUNCTIONS
+clear()
 function registerEventListeners() {
 
     // EVENT LISTENER ON THE OPERATOR BUTONS
@@ -20,11 +25,15 @@ function registerEventListeners() {
 
             if(number == "") {
                 operator = e.target.innerText
+                string += `${number} ${operator} `
+                output.innerHTML += `<small>${string}</small>`
                 console.log("hey its nohing")
             } else {
                 
                 operator = e.target.innerText
                 numbers.push(number)
+                string += `${number} ${operator} `
+                output.innerHTML += `<small>${string}</small>`
                 number = ""
 
             }
@@ -39,10 +48,13 @@ function registerEventListeners() {
                 numbers = []
                 result = 0
                 number += e.target.innerText
+                output.innerHTML = `<p>${number}</p><small>${string}</small>`
             } else if(numbers.length >= 1 && number == "") {
                 number += e.target.innerText
+                output.innerHTML = `<p>${number}</p><small>${string}</small>`
             } else {
                 number += e.target.innerText
+                output.innerHTML = `<p>${number}</p><small>${string}</small>`
             }
         })
     }
@@ -79,6 +91,7 @@ function registerEventListeners() {
         }
 
         numbers = [result]
+        output.innerHTML = `<p>${result.toString()}</p>`
         console.log("The numbers array is " + numbers + " The result is : " + result)
     })
 
@@ -87,13 +100,25 @@ function registerEventListeners() {
         clear()
     })
 
+    // EVENT LISTENRE ON THE DELETE BUTTN
+    deleteBtn.addEventListener('click', (e) => {
+        number = deleteLastCharacter(number)
+        output.innerHTML = `<p>${number}</p>`
+    })
+
 }
 
 function clear() {
     numbers = []
     result = 0
     number = ""
-    output.innerText = result
+    output.innerHTML = `<p>${result}</p>`
+}
+
+function deleteLastCharacter(str) {
+    let newStr = str.substring(0, str.length -1)
+    str = newStr
+    return str
 }
 
 registerEventListeners()
