@@ -5,7 +5,8 @@ let employees = [
         "last_name" : "Sandor",
         "email" : "@.com",
         "job_title" : "something",
-        "salary" : 2000        
+        "salary" : 2000,
+        "img" : "htp.sa.d.sad.com"        
     },    
     {
         "id" : 2,
@@ -31,7 +32,7 @@ function render() {
     table.innerHTML = ""
 
     for (let employee of employees) {
-        table.innerHTML += `<p>Employee ${employee.id} : ${employee.first_name} ${employee.last_name}</p>`
+        table.innerHTML += `<p>Employee ${employee.id} : ${employee.first_name} ${employee.last_name}</p><img src=`${employee.img}`>`
     }
     
 }
